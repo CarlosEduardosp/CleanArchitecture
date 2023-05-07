@@ -15,7 +15,6 @@ def test_insert_user():
 
     name = faker.name()
     password = faker.word()
-    # engine = db_connection_handler.get_engine()
 
     # SQL comands
     new_user = user_repostory.insert_user(name, password)
@@ -29,12 +28,16 @@ def test_select_user():
 
     engine = db_connection_handler.get_engine()
 
-    with engine.connect() as connection:
-        # select data in users
-        query_user = connection.execute(text(f"SELECT * FROM users;"))
+    try:
+        with engine.connect() as connection:
+            # select data in users
+            query_user = connection.execute(text(f"SELECT * FROM users WHERE id={3} ;"))
 
-    for us in query_user:
-        print(us.name, us.id)
+        for us in query_user:
+            print(f"Selected id {us.id} ->", us.name)
+
+    except:
+        print("Usuario não encontrado.")
 
 
 def test_delete_user():
@@ -44,5 +47,5 @@ def test_delete_user():
 
     """ deleting data of select in users """
     with engine.connect() as connection:
-        connection.execute(text(f"DELETE FROM users WHERE id>{0} ;"))
+        connection.execute(text(f"DELETE FROM users WHERE id={1} ;"))
         connection.commit()

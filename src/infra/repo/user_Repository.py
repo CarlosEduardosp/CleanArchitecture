@@ -1,7 +1,12 @@
 # pylint: disable=E1101
+from typing import List
+from sqlalchemy import text
 from src.doman.models import Users
 from src.infra.config import DBConnectionHandler
 from src.infra.entities import Users as UsersModels
+
+
+db_connection_handler = DBConnectionHandler
 
 
 class UserRepository:
@@ -30,3 +35,53 @@ class UserRepository:
             finally:
                 db_connection.session.close()
         return None
+
+    @classmethod
+    def select_user(cls, user_id: int = None, name: str = None) -> List[Users]:
+        """
+        Select data in user entity by id and/or name
+        :param - user_id: id of the registry
+               - name: User name
+               :return - List with Users selected
+        """
+        with DBConnectionHandler() as db_connection:
+            try:
+                query_data = None
+
+                engine = db_connection_handler.get_engine()
+
+                if user_id and not name:
+                    with engine.connect() as connection:
+                        # select data in users
+                        data = connection.execute(
+                            text(f"SELECT * FROM users WHERE id={user_id};")
+                        )
+                        query_data = [data]
+
+                elif not user_id and name:
+                    with engine.connect() as connection:
+                        # select data in users
+                        data = connection.execute(
+                            text(f"SELECT * FROM users WHERE name={name};")
+                        )
+                        query_data = [data]
+
+                elif user_id and name:
+                    with engine.connect() as connection:
+                        # select data in users
+                        data = connection.execute(
+                            text(
+                                f"SELECT * FROM users WHERE id={user_id} and name={name});"
+                            )
+                        )
+                        query_data = [data]
+
+                return query_data
+
+            except:
+                db_connection.session.rollback()
+
+            finally:
+                db_connection.session.close()
+
+            return None
