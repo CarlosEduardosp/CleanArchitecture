@@ -6,15 +6,24 @@ repos:
       language_version: python3.9
       stages: [commit]
 -   repo: https://github.com/pycqa/flake8
-    rev: 3.7.9 # pick a git hash / tag to point to
+    rev: 3.7.9
     hooks:
     - id: flake8
       stages: [commit]
 -   repo: local
     hooks:
+    - id: pytest
+      name: pytest
+      language: system
+      entry: pytest -v
+      always_run: true
+      pass_filenames: false
+      stages: [commit]
+-   repo: local
+    hooks:
       - id: requirements
         name: requirements
-        entry: bash -c 'venv/bin/pip3 freeze > requirements.txt; git add requirements.txt'
+        entry: bash -c 'venv/bin/pip freeze > requirements.txt; git add requirements.txt'
         language: system
         pass_filenames: false
         stages: [commit]
