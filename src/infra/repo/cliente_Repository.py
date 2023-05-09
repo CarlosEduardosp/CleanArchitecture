@@ -1,34 +1,36 @@
 # pylint: disable=E1101
 from typing import List
 from sqlalchemy import text
-from src.data.interfaces import UserRepositoryInterface
-from src.doman.models import Users
+from src.data.interfaces import ClienteRepositoryInterface
+from src.doman.models import Cliente
 from src.infra.config import DBConnectionHandler
-from src.infra.entities import Users as UsersModels
-
+from src.infra.entities import cliente as ClienteModels
 
 db_connection_handler = DBConnectionHandler
 
 
-class UserRepository(UserRepositoryInterface):
+class ClienteRepository(ClienteRepositoryInterface):
     """Class to manage User Repository"""
 
     @classmethod
-    def insert_user(self, name: str, password: str) -> Users:
+    def insert_user(self, apelido: str, email: str, senha: str, cep_cliente: int) -> Cliente:
         """Insert data in user entity
-        :param - name - person name
-               - password
+        :param - apelido - person apelido
+               - senha - person senha
         :return - tuple with new user inserted
         """
 
         with DBConnectionHandler() as db_connection:
             try:
-                new_user = UsersModels(name=name, password=password)
+                new_user = ClienteModels(apelido=apelido,
+                                         email=email,
+                                         senha=senha,
+                                         cep_cliente=cep_cliente)
                 db_connection.session.add(new_user)
                 db_connection.session.commit()
 
-                return Users(
-                    id=new_user.id, name=new_user.name, password=new_user.password
+                return Cliente(
+                    id_cliente=new_user.id_cliente, apelido=new_user.apelido, senha=new_user.senha, cep_cliente=new_user.cep_cliente
                 )
             except:
                 db_connection.session.rollback()
@@ -37,8 +39,9 @@ class UserRepository(UserRepositoryInterface):
                 db_connection.session.close()
         return None
 
+
     @classmethod
-    def select_user(cls, user_id: int = None, name: str = None) -> List[Users]:
+    def select_user(cls, id_cliente: int = None, apelido: str = None) -> List[Cliente]:
         """
         Select data in user entity by id and/or name
         :param - user_id: id of the registry
@@ -51,28 +54,28 @@ class UserRepository(UserRepositoryInterface):
 
                 engine = db_connection_handler.get_engine()
 
-                if user_id and not name:
+                if id_cliente and not apelido:
                     with engine.connect() as connection:
                         # select data in users
                         data = connection.execute(
-                            text(f"SELECT * FROM users WHERE id={user_id};")
+                            text(f"SELECT * FROM users WHERE id_cliente={id_cliente};")
                         )
                         query_data = [data]
 
-                elif not user_id and name:
+                elif not id_cliente and apelido:
                     with engine.connect() as connection:
                         # select data in users
                         data = connection.execute(
-                            text(f"SELECT * FROM users WHERE name={name};")
+                            text(f"SELECT * FROM users WHERE apelido={apelido};")
                         )
                         query_data = [data]
 
-                elif user_id and name:
+                elif id_cliente and apelido:
                     with engine.connect() as connection:
                         # select data in users
                         data = connection.execute(
                             text(
-                                f"SELECT * FROM users WHERE id={user_id} and name={name});"
+                                f"SELECT * FROM users WHERE id_cliente={id_cliente} and apelido={apelido});"
                             )
                         )
                         query_data = [data]

@@ -1,22 +1,20 @@
 from abc import ABC, abstractmethod
 from typing import List
-from src.doman.models import Pets
+from src.doman.models.cliente import Cliente
 
 
-class PetRepositoryInterface(ABC):
+class ClienteRepositoryInterface(ABC):
 
     """ Interface to Pet Repository """
 
     @abstractmethod
-    def insert_pet(self, name: str, specie: str, age:str, user_id: int) -> Pets:
+    def insert_user(self, name: str, password: str) -> Cliente:
         """ Abstractmethod """
 
         raise Exception("Method not implementend")
 
     @abstractmethod
-    def select_pet(self, pet_id: int = None,
-                   user_id: int = None
-                   ) -> List[Pets]:
+    def select_user(self, user_id: int = None, name: str = None) -> List[Cliente]:
         """ Abstractmethod """
 
         raise Exception("Method not implementend")

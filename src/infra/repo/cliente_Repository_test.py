@@ -1,13 +1,13 @@
 # pylint: disable=E1101
 from sqlalchemy import text
 from src.infra.config import DBConnectionHandler
-from .user_Repository import UserRepository
+from .cliente_Repository import UserRepository
 
 user_repostory = UserRepository()
 db_connection_handler = DBConnectionHandler()
 
 
-def test_insert_user():
+def test_insert_cliente():
     """should insert User"""
 
     name = "kadu"
@@ -25,7 +25,7 @@ def test_insert_user():
         print('ERRO - Usuário já existe')
 
 
-def test_select_user():
+def select_cliente():
     """Select in users"""
 
     engine = db_connection_handler.get_engine()
@@ -42,7 +42,7 @@ def test_select_user():
         print("Usuario não encontrado.")
 
 
-def delete_user():
+def delete_cliente():
     """deleting data in users"""
 
     engine = db_connection_handler.get_engine()

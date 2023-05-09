@@ -1,2 +1,1 @@
-from .pet_repository_interface import PetRepositoryInterface
-from .user_repository_interface import UserRepositoryInterface
+from .cliente_repository_interface import ClienteRepositoryInterface
