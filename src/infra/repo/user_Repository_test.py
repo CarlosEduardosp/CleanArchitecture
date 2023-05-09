@@ -49,5 +49,5 @@ def delete_user():
 
     """ deleting data of select in users """
     with engine.connect() as connection:
-        connection.execute(text(f"DELETE FROM users WHERE id={1} ;"))
+        connection.execute(text(f"DELETE FROM users WHERE id>{0} ;"))
         connection.commit()
