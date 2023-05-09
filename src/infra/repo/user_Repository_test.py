@@ -42,12 +42,12 @@ def test_select_user():
         print("Usuario não encontrado.")
 
 
-def delete_user():
+def test_delete_user():
     """deleting data in users"""
 
     engine = db_connection_handler.get_engine()
 
     """ deleting data of select in users """
     with engine.connect() as connection:
-        connection.execute(text(f"DELETE FROM users WHERE id={1} ;"))
+        connection.execute(text(f"DELETE FROM users WHERE id>{0} ;"))
         connection.commit()
