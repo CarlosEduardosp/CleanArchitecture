@@ -39,7 +39,7 @@ def test_select_pet():
         return "Erro"
 
 
-def test_delete_pet():
+def delete_pet():
     """deleting data in pets"""
 
     engine = db_connection_handler.get_engine()

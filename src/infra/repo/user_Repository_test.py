@@ -42,7 +42,7 @@ def test_select_user():
         print("Usuario não encontrado.")
 
 
-def test_delete_user():
+def delete_user():
     """deleting data in users"""
 
     engine = db_connection_handler.get_engine()

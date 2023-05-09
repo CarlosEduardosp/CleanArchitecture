@@ -1,6 +1,7 @@
 # pylint: disable=E1101
 from typing import List
 from sqlalchemy import text
+from src.data.interfaces import UserRepositoryInterface
 from src.doman.models import Users
 from src.infra.config import DBConnectionHandler
 from src.infra.entities import Users as UsersModels
@@ -9,7 +10,7 @@ from src.infra.entities import Users as UsersModels
 db_connection_handler = DBConnectionHandler
 
 
-class UserRepository:
+class UserRepository(UserRepositoryInterface):
     """Class to manage User Repository"""
 
     @classmethod
