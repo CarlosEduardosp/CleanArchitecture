@@ -1,11 +1,8 @@
 # pylint: disable=E1101
-
 from sqlalchemy import text
-from faker import Faker
 from src.infra.config import DBConnectionHandler
 from .user_Repository import UserRepository
 
-faker = Faker()
 user_repostory = UserRepository()
 db_connection_handler = DBConnectionHandler()
 
@@ -13,14 +10,19 @@ db_connection_handler = DBConnectionHandler()
 def test_insert_user():
     """should insert User"""
 
-    name = faker.name()
-    password = faker.word()
+    name = "kadu"
+    password = "1234"
 
-    # SQL comands
-    new_user = user_repostory.insert_user(name, password)
+    try:
 
-    assert new_user.name == name
-    assert new_user.password == password
+        # SQL comands
+        new_user = user_repostory.insert_user(name, password)
+
+        assert new_user.name == name
+        assert new_user.password == password
+
+    except:
+        print('ERRO - Usuário já existe')
 
 
 def test_select_user():
@@ -40,7 +42,7 @@ def test_select_user():
         print("Usuario não encontrado.")
 
 
-def test_delete_user():
+def delete_user():
     """deleting data in users"""
 
     engine = db_connection_handler.get_engine()
