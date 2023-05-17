@@ -8,7 +8,7 @@ class PetRepositoryInterface(ABC):
     """ Interface to Pet Repository """
 
     @abstractmethod
-    def insert_pet(self, name: str, specie: str, age:str, user_id: int) -> Pets:
+    def insert_pet(self, name: str, specie: str, age: str, user_id: int) -> Pets:
         """ Abstractmethod """
 
         raise Exception("Method not implementend")
