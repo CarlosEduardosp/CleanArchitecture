@@ -1,0 +1,26 @@
+from typing import Dict
+from src.doman.use_cases.register_use import RegisterUser as RegisterUserInterface
+from src.data.interfaces import user_repository_interface as UserRepository
+from src.doman.models import Users
+
+
+class RegisterUser(RegisterUserInterface):
+    """Class to define usercase: Register User"""
+
+    def __init__(self, user_repository: type[UserRepository]):
+        self.user_repository = user_repository
+
+    def register(self, name: str, password: str) -> Dict[bool, Users]:
+        """Register user use case
+        :param - name: person name
+               - password: person password
+        :return - Dictionary with informations of the process
+        """
+
+        response = None
+        validade_entry = isinstance(name, str) and isinstance(password, str)
+
+        if validade_entry:
+            response = self.user_repository.insert_user(name, password)
+
+        return {"Success": validade_entry, "Data": response}
