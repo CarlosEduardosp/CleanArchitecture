@@ -1,5 +1,5 @@
 from typing import Dict
-from src.doman.use_cases.register_use import RegisterUser as RegisterUserInterface
+from src.doman.use_cases.register_user import RegisterUser as RegisterUserInterface
 from src.data.interfaces import user_repository_interface as UserRepository
 from src.doman.models import Users
 
@@ -18,9 +18,10 @@ class RegisterUser(RegisterUserInterface):
         """
 
         response = None
+        # validate_entry == True or False
         validade_entry = isinstance(name, str) and isinstance(password, str)
 
-        if validade_entry:
+        if validade_entry:  # if validate_entry == True
             response = self.user_repository.insert_user(name, password)
 
         return {"Success": validade_entry, "Data": response}
