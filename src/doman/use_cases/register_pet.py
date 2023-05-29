@@ -1,0 +1,15 @@
+from abc import ABC, abstractmethod
+from typing import Dict
+from src.doman.models.pets import Pets
+
+
+class RegisterPet(ABC):
+    """Interface to finpet use case"""
+
+    @abstractmethod
+    def registry(
+        cls, name: str, specie: str, user_information: Dict[int, str], age: int = None
+    ) -> Dict[bool, Pets]:
+        """use case"""
+
+        raise Exception("Should implement method registry")
