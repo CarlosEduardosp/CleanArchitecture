@@ -25,10 +25,12 @@ class RegisterPet(RegisterPetInterface):
         # Validating entry and trying to find an user
         validate_entry = isinstance(name, str) and isinstance(specie, str)
         user = self.__find_user_information(user_information)
-        checker = validate_entry and user
+        checker = validate_entry and user["Success"]
 
         if checker:
-            response = self.pet_repository.insert_pet(name=name)
+            response = self.pet_repository.insert_pet(
+                name=name, specie=specie, age=age, user_id=user_information["user_id"]
+            )
         return {"Success": checker, "Data": response}
 
     def __find_user_information(

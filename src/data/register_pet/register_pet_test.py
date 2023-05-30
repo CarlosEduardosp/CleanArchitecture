@@ -32,4 +32,11 @@ def test_register_pet():
 
     # testing inputs
     assert pet_repo.insert_pet_params["name"] == attributes["name"]
-    print(response)
+    assert pet_repo.insert_pet_params["specie"] == attributes["specie"]
+    assert pet_repo.insert_pet_params["age"] == attributes["age"]
+    assert (
+        pet_repo.insert_pet_params["user_id"]
+        == attributes["user_information"]["user_id"]
+    )
+
+    return response

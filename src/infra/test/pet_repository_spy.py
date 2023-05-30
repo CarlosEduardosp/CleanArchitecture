@@ -10,11 +10,13 @@ class PetRepositorySpy:
         self.insert_pet_params = {}
         self.select_pet_params = {}
 
-    def insert_pet(self, name: str) -> Pets:
+    def insert_pet(self, name: str, specie: str, age: int, user_id: int) -> Pets:
         """Spy to all the attributes"""
 
         self.insert_pet_params["name"] = name
-        # colocar o resto
+        self.insert_pet_params["specie"] = specie
+        self.insert_pet_params["age"] = age
+        self.insert_pet_params["user_id"] = user_id
 
         return mock_pets()
 
