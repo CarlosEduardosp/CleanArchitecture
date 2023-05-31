@@ -41,6 +41,9 @@ class FindUserSpy:
 
         self.by_name_param["name"] = name
         self.by_id_param["user_id"] = user_id
+        self.by_id_and_name_param["name"] = name
+        self.by_id_and_name_param["user_id"] = user_id
+
         response = None
         validate_entry = isinstance(user_id, int) and isinstance(name, str)
 
