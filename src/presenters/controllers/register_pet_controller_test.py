@@ -24,7 +24,7 @@ def test_route():
         },
     }
 
-    response = register_pet_route.route(HttpRequest(body=atributtes))
+    response = register_pet_route.routes(HttpRequest(body=atributtes))
 
     # testing inputs
 

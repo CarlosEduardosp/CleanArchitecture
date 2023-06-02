@@ -1,6 +1,6 @@
 from typing import Dict, List
-from src.doman.models.users import Users
-from src.doman.test.mock_user import mock_users
+from src.domain.models.users import Users
+from src.domain.test.mock_user import mock_users
 
 
 class FindUserSpy:

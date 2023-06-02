@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import List
-from src.doman.models import Pets
+from src.domain.models import Pets
 
 
 class PetRepositoryInterface(ABC):

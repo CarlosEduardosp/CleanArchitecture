@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import Dict
-from src.doman.models.pets import Pets
+from src.domain.models.pets import Pets
 
 
 class RegisterPet(ABC):

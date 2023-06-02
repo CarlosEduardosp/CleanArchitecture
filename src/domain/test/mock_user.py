@@ -1,5 +1,5 @@
 from faker import Faker
-from src.doman.models import Users
+from src.domain.models import Users
 
 faker = Faker()
 

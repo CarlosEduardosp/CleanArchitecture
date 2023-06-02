@@ -1,6 +1,6 @@
 from typing import List
-from src.doman.models import Pets
-from src.doman.test.mock_pet import mock_pets
+from src.domain.models import Pets
+from src.domain.test.mock_pet import mock_pets
 
 
 class PetRepositorySpy:

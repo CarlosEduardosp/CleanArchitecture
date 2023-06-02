@@ -1,7 +1,7 @@
 from typing import List, Dict
-from src.doman.use_cases.find_user import FindUser as FindUsersinterface
+from src.domain.use_cases.find_user import FindUser as FindUsersinterface
 from src.data.interfaces import UserRepositoryInterface as UserRepository
-from src.doman.models.users import Users
+from src.domain.models.users import Users
 
 
 class FindUser(FindUsersinterface):

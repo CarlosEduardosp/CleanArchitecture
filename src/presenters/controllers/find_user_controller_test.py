@@ -16,7 +16,7 @@ def test_handle():
         query={"user_id": faker.random_number(digits=1), "user_name": "kadu"}
     )
 
-    response = find_use_controller.handle(http_request)
+    response = find_use_controller.routes(http_request)
 
     # Testing inputs
     assert (

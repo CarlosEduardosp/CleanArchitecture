@@ -1,7 +1,7 @@
 from typing import List
 from src.data.interfaces import PetRepositoryInterface
 from sqlalchemy import text
-from src.doman.models import Pets
+from src.domain.models import Pets
 from src.infra.entities import Pets as PetModel
 from src.infra.config import DBConnectionHandler
 
@@ -10,16 +10,16 @@ db_connection_handler = DBConnectionHandler()
 
 
 class PetRepository(PetRepositoryInterface):
-    """ Class to manage Pet Repository """
+    """Class to manage Pet Repository"""
 
     @classmethod
-    def insert_pet(cls, name: str, specie: str, age:str, user_id: int) -> Pets:
-        """ Insert data in PetRepository entity
+    def insert_pet(cls, name: str, specie: str, age: str, user_id: int) -> Pets:
+        """Insert data in PetRepository entity
         :param  - name: name of the pet
                 - specie: Enum with species acepted
                 - age: pet age
                 - user__id: id of the
-        :return - tuple with new pet inserted """
+        :return - tuple with new pet inserted"""
 
         with DBConnectionHandler() as db_connection:
             try:
@@ -32,7 +32,7 @@ class PetRepository(PetRepositoryInterface):
                     name=new_pet.name,
                     specie=new_pet.specie,
                     age=new_pet.age,
-                    user_id=new_pet.user_id
+                    user_id=new_pet.user_id,
                 )
             except:
                 db_connection.session.rollback()
@@ -43,20 +43,16 @@ class PetRepository(PetRepositoryInterface):
         return None
 
     @classmethod
-    def select_pet(cls, pet_id: int = None,
-                   user_id: int = None
-                   ) -> List[Pets]:
-        """ Select data in PetRepository by id and/or user_id """
+    def select_pet(cls, pet_id: int = None, user_id: int = None) -> List[Pets]:
+        """Select data in PetRepository by id and/or user_id"""
 
         engine = db_connection_handler.get_engine()
 
         with DBConnectionHandler() as db_connection:
             try:
-
                 query_data = None
 
                 if pet_id and not user_id:
-
                     with engine.connect() as connection:
                         # select data in pets
                         data = connection.execute(
@@ -65,7 +61,6 @@ class PetRepository(PetRepositoryInterface):
                         query_data = [data]
 
                 elif not pet_id and user_id:
-
                     with engine.connect() as connection:
                         # select data in pets
                         data = connection.execute(
@@ -74,11 +69,12 @@ class PetRepository(PetRepositoryInterface):
                         query_data = [data]
 
                 elif pet_id and user_id:
-
                     with engine.connect() as connection:
                         # select data in pets
                         data = connection.execute(
-                            text(f"SELECT * FROM pets WHERE id={pet_id} and user_id={user_id} ;")
+                            text(
+                                f"SELECT * FROM pets WHERE id={pet_id} and user_id={user_id} ;"
+                            )
                         )
                         query_data = [data]
 

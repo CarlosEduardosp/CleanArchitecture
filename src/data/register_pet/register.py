@@ -1,9 +1,9 @@
 from typing import Type, Dict, List
-from src.doman.use_cases.register_pet import RegisterPet as RegisterPetInterface
+from src.domain.use_cases.register_pet import RegisterPet as RegisterPetInterface
 from src.data.Find_user.find import FindUser
 from src.data.interfaces.pet_repository_interface import PetRepositoryInterface
-from src.doman.models.pets import Pets
-from src.doman.models.users import Users
+from src.domain.models.pets import Pets
+from src.domain.models.users import Users
 
 
 class RegisterPet(RegisterPetInterface):

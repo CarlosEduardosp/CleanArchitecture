@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import Dict, List
-from src.doman.models.users import Users
+from src.domain.models.users import Users
 
 
 class FindUser(ABC):

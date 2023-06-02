@@ -1,8 +1,8 @@
 from typing import Dict, List
-from src.doman.test.mock_pet import mock_pets
-from src.doman.test.mock_user import mock_users
-from src.doman.models.pets import Pets
-from src.doman.models.users import Users
+from src.domain.test.mock_pet import mock_pets
+from src.domain.test.mock_user import mock_users
+from src.domain.models.pets import Pets
+from src.domain.models.users import Users
 
 
 class RegisterPetSpy:

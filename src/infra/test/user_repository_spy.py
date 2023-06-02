@@ -1,6 +1,6 @@
 from typing import List
-from src.doman.models import Users
-from src.doman.test import mock_users
+from src.domain.models import Users
+from src.domain.test import mock_users
 
 
 class UserRepositorySpy:

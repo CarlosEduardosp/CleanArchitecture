@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from src.doman.models import Users
+from src.domain.models import Users
 from typing import Dict
 
 

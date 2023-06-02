@@ -1,7 +1,7 @@
 from typing import List, Dict
-from src.doman.use_cases.find_pet import FindPets as FindPetinterface
+from src.domain.use_cases.find_pet import FindPets as FindPetinterface
 from src.data.interfaces import PetRepositoryInterface as PetRepository
-from src.doman.models.pets import Pets
+from src.domain.models.pets import Pets
 
 
 class FindPet(FindPetinterface):
